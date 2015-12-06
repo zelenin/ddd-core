@@ -164,7 +164,7 @@ class ArrayCollection implements Collection
      */
     public function mapWithKeys(callable $keyCallback, callable $valueCallback)
     {
-        $keys = array_map($keyCallback, $this->getKeys());
+        $keys = array_map($keyCallback, $this->getValues());
         $values = array_map($valueCallback, $this->getValues());
         return new static(array_combine($keys, $values));
     }
