@@ -12,7 +12,7 @@ abstract class DefaultEntity extends DefaultObject implements Entity
     /**
      * @var Id
      */
-    private $id;
+    protected $id;
 
     /**
      * @param Object $object
