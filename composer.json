@@ -1,0 +1,30 @@
+{
+    "name": "zelenin/ddd-core",
+    "description": "Core for DDD concepts",
+    "keywords": [
+        "ddd"
+    ],
+    "homepage": "https://github.com/zelenin/ddd-core",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aleksandr Zelenin",
+            "email": "aleksandr@zelenin.me",
+            "homepage": "http://zelenin.me",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/zelenin/ddd-core/issues",
+        "source": "https://github.com/zelenin/ddd-core"
+    },
+    "require": {
+        "php": ">=5.5",
+        "ramsey/uuid": "~3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zelenin\\Ddd\\Core\\": ""
+        }
+    }
+}
