@@ -5,7 +5,7 @@ namespace Zelenin\Ddd\Core\Domain\Traits;
 /**
  * @method static className()
  */
-trait SameTypeAs
+trait TypeOf
 {
     /**
      * @param string $className
