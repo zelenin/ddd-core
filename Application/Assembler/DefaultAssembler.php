@@ -4,8 +4,9 @@ namespace Zelenin\Ddd\Core\Application\Assembler;
 
 use Zelenin\Ddd\Core\Application\Dto\Dto;
 use Zelenin\Ddd\Core\Domain\Model\Entity;
+use Zelenin\Ddd\Core\Domain\Object\DefaultObject;
 
-abstract class DefaultAssembler implements Assembler
+abstract class DefaultAssembler extends DefaultObject implements Assembler
 {
     /**
      * @param Entity $entity
