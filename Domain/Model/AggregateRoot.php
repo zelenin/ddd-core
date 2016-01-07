@@ -11,15 +11,15 @@ abstract class AggregateRoot extends DefaultEntity
     /**
      * @var Event[]
      */
-    private $events = [];
+    private $unCommittedEvents = [];
 
     /**
      * @return DefaultStream
      */
     public function getUncommittedEvents()
     {
-        $stream = new DefaultStream($this->events);
-        $this->events = [];
+        $stream = new DefaultStream($this->unCommittedEvents);
+        $this->unCommittedEvents = [];
         return $stream;
     }
 
@@ -29,12 +29,13 @@ abstract class AggregateRoot extends DefaultEntity
     protected function apply(Event $event)
     {
         $method = sprintf('apply%s', $event->name());
+
         if (!method_exists($this, $method)) {
             throw new BadMethodCallException(sprintf('Method %s::%s is not found.', static::className(), $method));
         }
 
         $this->$method($event);
 
-        $this->events[] = $event;
+        $this->unCommittedEvents[] = $event;
     }
 }

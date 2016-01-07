@@ -16,6 +16,11 @@ abstract class DefaultEvent implements Event, HasClassName
      */
     private $dateTime;
 
+    public function __construct()
+    {
+        $this->dateTime = DateTimeOfDay::now();
+    }
+
     /**
      * @return string
      */
