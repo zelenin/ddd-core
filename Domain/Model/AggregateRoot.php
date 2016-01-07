@@ -2,68 +2,39 @@
 
 namespace Zelenin\Ddd\Core\Domain\Model;
 
-use Zelenin\Ddd\Core\Domain\Contract\HasEvents;
+use BadMethodCallException;
+use Zelenin\Ddd\Core\Domain\Event\DefaultStream;
 use Zelenin\Ddd\Core\Domain\Event\Event;
-use Zelenin\Ddd\Core\Domain\Exception\NotMatchTypeException;
-use Zelenin\Ddd\Core\Domain\Model\Id\Id;
-use Zelenin\Ddd\Core\Domain\Object\DefaultObject;
-use Zelenin\Ddd\Core\Domain\Object\Object;
 
-abstract class AggregateRoot extends DefaultEntity implements HasEvents{
+abstract class AggregateRoot extends DefaultEntity
+{
     /**
      * @var Event[]
      */
     private $events = [];
 
+    /**
+     * @return DefaultStream
+     */
     public function getUncommittedEvents()
     {
-        $this->safelyPopulateEventsWithAggregateId();
-        $events       = $this->events;
-        $this->events = array();
-        return $events;
+        $stream = new DefaultStream($this->events);
+        $this->events = [];
+        return $stream;
     }
+
     /**
-     * Used when somebody is trying to modify an Aggregate.
-     * You should check that the input is good then create an event and call this method.
-     *
-     * @param EventInterface $event
+     * @param Event $event
      */
-    protected function apply(EventInterface $event)
+    protected function apply(Event $event)
     {
-        $this->executeEvent($event);
-        $this->events[] = $event;
-    }
-    /**
-     * @param EventInterface $event
-     *
-     * @throws BadMethodCallException
-     */
-    private function executeEvent(EventInterface $event)
-    {
-        $eventName = new EventName($event);
-        $method    = sprintf('apply%s', (string) $eventName);
+        $method = sprintf('apply%s', $event->name());
         if (!method_exists($this, $method)) {
-            throw new BadMethodCallException(
-                sprintf(
-                    'You must define the %s::%s method(%s $event) in order to apply event named "%s". ',
-                    get_class($this),
-                    $method,
-                    get_class($event),
-                    $eventName
-                )
-            );
+            throw new BadMethodCallException(sprintf('Method %s::%s is not found.', static::className(), $method));
         }
+
         $this->$method($event);
-    }
-    /**
-     *
-     */
-    private function safelyPopulateEventsWithAggregateId()
-    {
-        foreach ($this->events as $event) {
-            if (null === $event->getAggregateRootId()) {
-                $event->setAggregateRootId($this->id);
-            }
-        }
+
+        $this->events[] = $event;
     }
 }

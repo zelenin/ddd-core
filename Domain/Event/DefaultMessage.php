@@ -33,9 +33,9 @@ final class DefaultMessage implements Message
      */
     public function __construct(Id $id, Event $data)
     {
-        $this->name = $data::className();
+        $this->name = $data->name();
         $this->id = $id;
-        $this->dateTime = DateTimeOfDay::now();
+        $this->dateTime = $data->dateTime();
         $this->data = $data;
     }
 
