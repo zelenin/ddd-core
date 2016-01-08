@@ -7,12 +7,12 @@ use ArrayIterator;
 final class DefaultStream implements Stream
 {
     /**
-     * @var Event[]
+     * @var Message[]
      */
     private $events;
 
     /**
-     * @param Event[] $events
+     * @param Message[] $events
      */
     public function __construct(array $events)
     {

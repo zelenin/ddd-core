@@ -3,13 +3,15 @@
 namespace Zelenin\Ddd\Core\Domain\Model;
 
 use BadMethodCallException;
+use Zelenin\Ddd\Core\Domain\Event\DefaultMessage;
 use Zelenin\Ddd\Core\Domain\Event\DefaultStream;
 use Zelenin\Ddd\Core\Domain\Event\Event;
+use Zelenin\Ddd\Core\Domain\Event\Message;
 
 abstract class AggregateRoot extends DefaultEntity
 {
     /**
-     * @var Event[]
+     * @var Message[]
      */
     private $unCommittedEvents = [];
 
@@ -36,6 +38,6 @@ abstract class AggregateRoot extends DefaultEntity
 
         $this->$method($event);
 
-        $this->unCommittedEvents[] = $event;
+        $this->unCommittedEvents[] = new DefaultMessage($this->getId(), $event);
     }
 }
