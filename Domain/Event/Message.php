@@ -15,7 +15,7 @@ interface Message
     /**
      * @return Id
      */
-    public function id();
+    public function aggregateRootId();
 
     /**
      * @return DateTimeOfDay

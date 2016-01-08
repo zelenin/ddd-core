@@ -15,7 +15,7 @@ final class DefaultMessage implements Message
     /**
      * @return Id
      */
-    private $id;
+    private $aggregateRootId;
 
     /**
      * @var DateTimeOfDay
@@ -31,10 +31,10 @@ final class DefaultMessage implements Message
      * @param Id $id
      * @param Event $data
      */
-    public function __construct(Id $id, Event $data)
+    public function __construct(Id $aggregateRootId, Event $data)
     {
         $this->name = $data->name();
-        $this->id = $id;
+        $this->aggregateRootId = $aggregateRootId;
         $this->dateTime = DateTimeOfDay::now();
         $this->data = $data;
     }
@@ -50,9 +50,9 @@ final class DefaultMessage implements Message
     /**
      * @return Id
      */
-    public function id()
+    public function aggregateRootId()
     {
-        return $this->id;
+        return $this->aggregateRootId;
     }
 
     /**
