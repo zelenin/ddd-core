@@ -1,6 +1,6 @@
 <?php
 
-namespace Zelenin\Ddd\Core\Infrastructure\Service\Id;
+namespace Zelenin\Ddd\Core\Domain\Service\IdGenerator;
 
 interface Generator
 {

@@ -7,6 +7,7 @@ use Zelenin\Ddd\Core\Domain\Event\DefaultMessage;
 use Zelenin\Ddd\Core\Domain\Event\DefaultStream;
 use Zelenin\Ddd\Core\Domain\Event\Event;
 use Zelenin\Ddd\Core\Domain\Event\Message;
+use Zelenin\Ddd\Core\Domain\Event\Metadata;
 
 abstract class AggregateRoot extends DefaultEntity
 {
@@ -38,6 +39,6 @@ abstract class AggregateRoot extends DefaultEntity
 
         $this->$method($event);
 
-        $this->unCommittedEvents[] = new DefaultMessage($this->getId(), $event);
+        $this->unCommittedEvents[] = new DefaultMessage(static::className(), $this->getId(), new Metadata(), $event);
     }
 }

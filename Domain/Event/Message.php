@@ -10,6 +10,11 @@ interface Message
     /**
      * @return string
      */
+    public function type();
+
+    /**
+     * @return string
+     */
     public function name();
 
     /**
@@ -21,6 +26,11 @@ interface Message
      * @return DateTimeOfDay
      */
     public function dateTime();
+
+    /**
+     * @return Metadata
+     */
+    public function metaData();
 
     /**
      * @return Event

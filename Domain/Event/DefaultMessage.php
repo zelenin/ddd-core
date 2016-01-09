@@ -10,6 +10,10 @@ final class DefaultMessage implements Message
     /**
      * @var string
      */
+    private $type;
+    /**
+     * @var string
+     */
     private $name;
 
     /**
@@ -23,20 +27,37 @@ final class DefaultMessage implements Message
     private $dateTime;
 
     /**
+     * @var Metadata
+     */
+    private $metadata;
+
+    /**
      * @return Event
      */
     private $data;
 
     /**
-     * @param Id $id
+     * @param $type
+     * @param Id $aggregateRootId
+     * @param Metadata $metadata
      * @param Event $data
      */
-    public function __construct(Id $aggregateRootId, Event $data)
+    public function __construct($type, Id $aggregateRootId, Metadata $metadata, Event $data)
     {
+        $this->type = $type;
         $this->name = $data->name();
         $this->aggregateRootId = $aggregateRootId;
         $this->dateTime = DateTimeOfDay::now();
+        $this->metadata = $metadata;
         $this->data = $data;
+    }
+
+    /**
+     * @return string
+     */
+    public function type()
+    {
+        return $this->type;
     }
 
     /**
@@ -61,6 +82,14 @@ final class DefaultMessage implements Message
     public function dateTime()
     {
         return $this->dateTime;
+    }
+
+    /**
+     * @return Metadata
+     */
+    public function metaData()
+    {
+        return $this->metadata;
     }
 
     /**

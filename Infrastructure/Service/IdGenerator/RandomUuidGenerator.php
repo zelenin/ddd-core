@@ -1,11 +1,13 @@
 <?php
 
-namespace Zelenin\Ddd\Core\Infrastructure\Service\Id;
+namespace Zelenin\Ddd\Core\Infrastructure\Service\IdGenerator;
 
 use Ramsey\Uuid\UuidFactory;
 use Zelenin\Ddd\Core\Domain\Object\DefaultObject;
+use Zelenin\Ddd\Core\Domain\Service\IdGenerator\Generator;
+use Zelenin\Ddd\Core\Domain\Service\Service;
 
-final class RandomUuidGenerator extends DefaultObject implements Generator
+final class RandomUuidGenerator extends DefaultObject implements Generator, Service
 {
     /**
      * @var UuidFactory
