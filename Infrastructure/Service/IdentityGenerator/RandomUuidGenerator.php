@@ -4,10 +4,10 @@ namespace Zelenin\Ddd\Core\Infrastructure\Service\IdGenerator;
 
 use Ramsey\Uuid\UuidFactory;
 use Zelenin\Ddd\Core\Domain\Object\DefaultObject;
-use Zelenin\Ddd\Core\Domain\Service\IdGenerator\Generator;
+use Zelenin\Ddd\Core\Domain\Service\IdentityGenerator\IdentityGenerator;
 use Zelenin\Ddd\Core\Domain\Service\Service;
 
-final class RandomUuidGenerator extends DefaultObject implements Generator, Service
+final class RandomUuidGenerator extends DefaultObject implements IdentityGenerator, Service
 {
     /**
      * @var UuidFactory
