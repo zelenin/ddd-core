@@ -1,6 +1,6 @@
 <?php
 
-namespace Zelenin\Ddd\Core\Infrastructure\Service\IdGenerator;
+namespace Zelenin\Ddd\Core\Infrastructure\Service\IdentityGenerator;
 
 use Ramsey\Uuid\UuidFactory;
 use Zelenin\Ddd\Core\Domain\Object\DefaultObject;
