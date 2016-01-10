@@ -3,10 +3,9 @@
 namespace Zelenin\Ddd\Core\Domain\Event;
 
 use ReflectionClass;
-use Zelenin\Ddd\Core\Domain\Contract\HasClassName;
 use Zelenin\Ddd\Core\Domain\Traits\ClassName;
 
-abstract class DefaultEvent implements Event, HasClassName
+abstract class DefaultEvent implements Event
 {
     use ClassName;
 

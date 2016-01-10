@@ -2,8 +2,12 @@
 
 namespace Zelenin\Ddd\Core\Domain\Event;
 
-final class Metadata
+use Zelenin\Ddd\Core\Domain\Traits\ClassName;
+
+final class Metadata implements \Zelenin\Ddd\Core\Domain\Service\MessageSerializer\Message
 {
+    use ClassName;
+
     /**
      * @var array
      */
@@ -35,5 +39,23 @@ final class Metadata
         $value = array_merge($this->value(), $metadata->value());
 
         return new static($value);
+    }
+
+    /**
+     * @return array
+     */
+    public function serialize()
+    {
+        return $this->value();
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return self
+     */
+    public static function deserialize(array $data)
+    {
+        return new static($data);
     }
 }
