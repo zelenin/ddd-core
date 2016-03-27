@@ -20,7 +20,7 @@
     },
     "require": {
         "php": ">=5.5",
-        "zelenin/value-object": "~0.1.2",
+        "zelenin/value-object": "~0.2.0",
         "paragonie/random_compat": "~2"
     },
     "autoload": {
